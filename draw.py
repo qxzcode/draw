@@ -14,10 +14,12 @@ from tensorflow.examples.tutorials import mnist
 import numpy as np
 import os
 
-tf.flags.DEFINE_string("data_dir", "", "")
-tf.flags.DEFINE_boolean("read_attn", True, "enable attention for reader")
-tf.flags.DEFINE_boolean("write_attn",True, "enable attention for writer")
-FLAGS = tf.flags.FLAGS
+from argparse import ArgumentParser
+parser = ArgumentParser()
+parser.add_argument('data_dir')
+parser.add_argument('--no-read-attn', action='store_false', dest='read_attn')
+parser.add_argument('--no-write-attn', action='store_false', dest='write_attn')
+FLAGS = parser.parse_args()
 
 ## MODEL PARAMETERS ## 
 
